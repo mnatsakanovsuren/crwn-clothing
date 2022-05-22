@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
-import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import FormInput from '../form-input/form-input.component';
+import Button from '../button/button.component';
 
 import {createAuthUserWithEmailAndPassword, createUserDocumentFromAuth} from '../../utils/firebase/firebase.utils';
 
@@ -31,11 +31,12 @@ const SignUpForm = () => {
 
     try {
       const {user} = await createAuthUserWithEmailAndPassword(email, password);
+
       await createUserDocumentFromAuth(user, { displayName });
+
       resetFormFields();
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
-        console.log('Already exist')
         alert('Email already in use')
       }
       console.log('Error:', error);
