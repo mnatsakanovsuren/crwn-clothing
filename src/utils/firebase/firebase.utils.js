@@ -46,8 +46,6 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToadd) => 
   })
 
   await batch.commit();
-
-  console.log('done');
 }
 
 export const getCategoriesAndDocuments = async () => {
