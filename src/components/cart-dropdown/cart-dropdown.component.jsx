@@ -1,7 +1,12 @@
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
-import {CartContext} from '../../context/cart.context';
+import {
+  selectCartItems,
+  selectCartTotal
+} from '../../store/cart/cart.selector';
+
 import Button, { BUTTON_TYPES_CLASSES } from '../button/button.component';
 import CartItem from '../cart-item/cart-item.component';
 
@@ -16,7 +21,8 @@ import {
 
 const CartDropdown = () => {
   const [classActive, setClassActive] = useState('');
-  const {cartItems, cartTotal} = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
   const navigate = useNavigate();
 
   const goToCheckoutHandler = () => navigate('/checkout')
